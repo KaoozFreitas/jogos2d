@@ -1,0 +1,8 @@
+Library/
+Temp/
+.vs/
+*.csproj
+*.sln
+sh.exe.stackdump
+CuboMagico/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll.meta
+CuboMagico/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
