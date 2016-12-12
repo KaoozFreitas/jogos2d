@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
         hookReleased = false;
     }
 
-    private void DestroyHook() {
+    public void DestroyHook() {
         lineRenderer.gameObject.SetActive(false);
         Destroy(hook);
     }

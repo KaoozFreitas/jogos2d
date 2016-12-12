@@ -9,6 +9,7 @@ public class HookScript : MonoBehaviour {
             PlayerController characterController = collision.gameObject.GetComponent<PlayerController>();
             Vector3 hookingVector = Vector3.Normalize(player.transform.position - collision.transform.position);
             characterController.Hooked(hookingVector);
+            player.GetComponent<PlayerController>().DestroyHook();
         }
     }
 }
