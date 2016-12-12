@@ -18,4 +18,8 @@ public class MainMenuScript : MonoBehaviour {
     public void PlayButton () {
         SceneManager.LoadScene("MainScene");
     }
+
+    public void ExitButton() {
+        Application.Quit();
+    }
 }
