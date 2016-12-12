@@ -2,12 +2,12 @@
 using System.Collections;
 
 public class CollisionManager : MonoBehaviour {
-    public Collider2D Player1Collider;
-    public Collider2D Player2Collider;
+    public CharacterController Player1Collider;
+    public CharacterController Player2Collider;
 
     // Use this for initialization
     void Awake () {
-        Physics2D.IgnoreCollision(Player1Collider, Player2Collider);
-	}
-	
+        Physics.IgnoreCollision(Player1Collider, Player2Collider);
+    }
+
 }
