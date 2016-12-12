@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void HandleMovement() {
+
         if (Input.GetAxis("Horizontal_" + playerInput) < -0.33f) {
             this.transform.rotation = new Quaternion(0f, -0.7f, 0f, 0.7f);
         } else if (Input.GetAxis("Horizontal_" + playerInput) > 0.33f) {
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 moveVector = Vector3.zero;
         moveVector.x = (Input.GetAxis("Horizontal_" + playerInput) * speed);
         moveVector.y = (verticalVelocity);
+        moveVector.z = -this.transform.position.z * 2;
         controller.Move(moveVector * Time.deltaTime);
     }
 }
