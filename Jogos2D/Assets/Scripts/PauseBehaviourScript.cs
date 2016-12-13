@@ -19,6 +19,7 @@ public class PauseBehaviourScript : MonoBehaviour
 
     void Update()
     {
+        System.Console.WriteLine("checking");
         //If player presses escape and game is not paused. Pause game. If game is paused and player presses escape, unpause.
         if (Input.GetButtonDown("Pause") && !isPaused)
             Pause();
