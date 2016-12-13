@@ -5,25 +5,19 @@ using UnityEngine.UI; //Need this for calling UI scripts
 public class PauseBehaviourScript : MonoBehaviour
 {
 
-    [SerializeField]
-    Transform UIPanel; //Will assign our panel to this variable so we can enable/disable it
-
-    [SerializeField]
-    Text timeText; //Will assign our Time Text to this variable so we can modify the text it displays.
+    private GameObject pausePanel;
 
     bool isPaused; //Used to determine paused state
 
     void Start()
     {
-        UIPanel.gameObject.SetActive(false); //make sure our pause menu is disabled when scene starts
+        pausePanel = GameObject.Find("Pause Panel");
+        pausePanel.SetActive(false); //make sure our pause menu is disabled when scene starts
         isPaused = false; //make sure isPaused is always false when our scene opens
     }
 
     void Update()
     {
-
-        timeText.text = "Time Since Startup: " + Time.timeSinceLevelLoad; //Tells us the time since the scene loaded
-
         //If player presses escape and game is not paused. Pause game. If game is paused and player presses escape, unpause.
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
             Pause();
@@ -34,14 +28,14 @@ public class PauseBehaviourScript : MonoBehaviour
     public void Pause()
     {
         isPaused = true;
-        UIPanel.gameObject.SetActive(true); //turn on the pause menu
+        pausePanel.SetActive(true); //turn on the pause menu
         Time.timeScale = 0f; //pause the game
     }
 
     public void UnPause()
     {
         isPaused = false;
-        UIPanel.gameObject.SetActive(false); //turn off pause menu
+        pausePanel.SetActive(false); //turn off pause menu
         Time.timeScale = 1f; //resume game
     }
 

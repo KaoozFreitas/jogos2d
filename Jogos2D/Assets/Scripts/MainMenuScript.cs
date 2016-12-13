@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour {
     private GameObject mainMenuPanel;
@@ -15,10 +16,9 @@ public class MainMenuScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(Input.GetButtonDown("B"))
+		if(Input.GetButtonDown("Cancel"))
         {
             hideCredits();
-            System.Console.WriteLine("B button pressed");
         }
 	}
 
@@ -40,5 +40,7 @@ public class MainMenuScript : MonoBehaviour {
     {
         creditsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
+        Button creditsBtn = GameObject.Find("Credits Button").GetComponent<Button>();
+        creditsBtn.Select();
     }
 }
