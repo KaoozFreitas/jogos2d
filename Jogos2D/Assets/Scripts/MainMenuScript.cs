@@ -4,15 +4,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour {
+    private GameObject mainMenuPanel;
+    private GameObject creditsPanel;
+    // Use this for initialization
+    void Start () {
+        mainMenuPanel = GameObject.Find("Menu Panel");
+        creditsPanel = GameObject.Find("Credits Panel");
+        creditsPanel.SetActive(false);
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+    // Update is called once per frame
+    void Update () {
+		if(Input.GetButtonDown("B"))
+        {
+            hideCredits();
+            System.Console.WriteLine("B button pressed");
+        }
 	}
 
     public void PlayButton () {
@@ -21,5 +28,17 @@ public class MainMenuScript : MonoBehaviour {
 
     public void ExitButton() {
         Application.Quit();
+    }
+
+    public void showCredits()
+    {
+        creditsPanel.SetActive(true);
+        mainMenuPanel.SetActive(false);
+    }
+
+    public void hideCredits()
+    {
+        creditsPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
     }
 }
