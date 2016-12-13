@@ -37,7 +37,9 @@ public class PlayerController : MonoBehaviour {
             Rigidbody hookRigidbody = hook.GetComponent<Rigidbody>();
             HookScript hookScript = hook.GetComponent<HookScript>();
             hookScript.player = this.transform;
-            hookRigidbody.velocity = new Vector3(this.transform.rotation.y / 0.7f, 0.2f, 0f) * 15;
+
+            hookRigidbody.velocity = new Vector3(Input.GetAxis("Horizontal_" + playerInput), Input.GetAxis("Vertical_" + playerInput), 0f) * 20;
+
             lineRenderer.gameObject.SetActive(true);
             lineRenderer.GetComponent<LineRendererCode>().point2 = hook.transform;
             

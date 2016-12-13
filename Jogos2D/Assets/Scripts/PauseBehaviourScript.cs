@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI; //Need this for calling UI scripts
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseBehaviourScript : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class PauseBehaviourScript : MonoBehaviour
     {
         isPaused = true;
         pausePanel.SetActive(true); //turn on the pause menu
+        Button continueButton = GameObject.Find("Continue Button").GetComponent<Button>();
+        EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
         Time.timeScale = 0f; //pause the game
     }
 
