@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI; //Need this for calling UI scripts
+using UnityEngine.SceneManagement;
 
 public class PauseBehaviourScript : MonoBehaviour
 {
@@ -19,9 +20,9 @@ public class PauseBehaviourScript : MonoBehaviour
     void Update()
     {
         //If player presses escape and game is not paused. Pause game. If game is paused and player presses escape, unpause.
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        if (Input.GetButtonDown("Pause") && !isPaused)
             Pause();
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        else if (Input.GetButtonDown("Pause") && isPaused)
             UnPause();
     }
 
@@ -46,6 +47,11 @@ public class PauseBehaviourScript : MonoBehaviour
 
     public void Restart()
     {
-        Application.LoadLevel(0);
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 }
