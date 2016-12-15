@@ -5,7 +5,6 @@ public class HookScript : MonoBehaviour {
     public Transform player;
    
     void OnCollisionEnter(Collision collision) {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name.Contains("Player")) {
             PlayerController characterController = collision.gameObject.GetComponent<PlayerController>();
             Vector3 hookingVector = Vector3.Normalize(player.transform.position - collision.transform.position);

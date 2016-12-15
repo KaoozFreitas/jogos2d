@@ -13,9 +13,12 @@ public class CameraManager : MonoBehaviour {
             Camera.transform.position = Vector3.Lerp(Camera.transform.position, (new Vector3(mostAdvancedPlayerX, 0f, -10f)), 1.5f * Time.deltaTime);
         }
 
-        if (Camera.position.x - Player1.position.x > 9.5 ) {
-            DestroyImmediate(Player1.gameObject);
-            Player1 = Camera;
+        if (Camera.position.x - Player1.position.x > 9.5) {
+            Player1.gameObject.GetComponent<CharacterController>().enabled = false;
+        }
+
+        if (Camera.position.x - Player2.position.x > 9.5) {
+            Player2.gameObject.GetComponent<CharacterController>().enabled = false;
         }
     }
 }

@@ -52,6 +52,7 @@ public class PauseBehaviourScript : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("MainScene");
+        this.UnPause();
     }
 
     public void MainMenu()
