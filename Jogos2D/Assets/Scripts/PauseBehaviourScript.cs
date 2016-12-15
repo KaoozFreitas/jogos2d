@@ -31,6 +31,17 @@ public class PauseBehaviourScript : MonoBehaviour
             Pause();
         else if (Input.GetButtonDown("Pause") && isPaused)
             UnPause();
+
+        if(NoMorePlayers())
+        {
+            GameOver();
+        }
+    }
+
+    public bool NoMorePlayers()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        return players.Length <= 0;
     }
 
     public void Pause()

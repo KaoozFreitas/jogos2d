@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+        if (screenPosition.y > Screen.height || screenPosition.y < 0)
+            Destroy(this.gameObject);
+
         HandleMovement();
         HandleHook();
         HandleHooked();
@@ -94,6 +98,7 @@ public class PlayerController : MonoBehaviour {
         } else if(hit.gameObject.tag.Contains("Deadly")) {
             AudioSource neckSnapAudioSource = GameObject.Find("neck_snap audio").GetComponent<AudioSource>();
             neckSnapAudioSource.Play();
+            Destroy(this.gameObject);
         }
     }
 
