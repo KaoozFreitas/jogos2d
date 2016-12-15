@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
     public float jumpForce = 14.0f;
     public GameObject HookPrefab;
     public Transform HookPosition;
+    public GameObject JumpParticle;
+    public GameObject DescendParticle;
 
     private float verticalVelocity = 0;
     private bool canJump = true;
@@ -72,6 +74,19 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.gameObject.name.Contains("Treasure")) {
+            Win();
+        }
+    }
+
+    void Win() {
+        GameObject managers = GameObject.Find("Managers");
+        managers.GetComponent<CollisionManager>().EndGame(this.gameObject.name);
+        Camera.main.transform.LookAt(this.transform);
+        Camera.main.orthographic = false;
+    }
+
     private void HandleMovement() {
 
         if (Input.GetAxis("Horizontal_" + playerInput) < -0.33f) {
@@ -83,12 +98,22 @@ public class PlayerController : MonoBehaviour {
         if (controller.isGrounded) {
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetButtonDown("Jump_" + playerInput)) {
+                AudioSource jumpAudioSource = GameObject.Find("pulo audio").GetComponent<AudioSource>();
+                jumpAudioSource.Play();
+                GameObject jumpParticle = Instantiate(JumpParticle) as GameObject;
+                jumpParticle.transform.position = this.transform.position;
+                jumpParticle.transform.SetParent(this.transform);
                 verticalVelocity = jumpForce;
+                Destroy(jumpParticle, 0.25f);
             }
         } else {
             verticalVelocity -= gravity * Time.deltaTime;
             if (Input.GetButtonDown("Jump_" + playerInput)) {
+                GameObject descendParticle = Instantiate(DescendParticle) as GameObject;
+                descendParticle.transform.position = this.transform.position;
+                descendParticle.transform.SetParent(this.transform);
                 verticalVelocity = -jumpForce;
+                Destroy(descendParticle, 0.25f);
             }
         }
 
