@@ -92,7 +92,8 @@ public class PlayerController : MonoBehaviour {
         if (hit.gameObject.name.Contains("Treasure")) {
             Win();
         } else if(hit.gameObject.tag.Contains("Deadly")) {
-            
+            AudioSource neckSnapAudioSource = GameObject.Find("neck_snap audio").GetComponent<AudioSource>();
+            neckSnapAudioSource.Play();
         }
     }
 
