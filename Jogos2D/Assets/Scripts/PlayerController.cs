@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour {
     private CharacterController controller;
     private Animator animator;
 
+    private bool step = true;
+    float audioStepLengthWalk = 0.45f;
+
     void Start() {
         controller = this.GetComponent<CharacterController>();
         animator = this.GetComponent<Animator>();
@@ -74,7 +77,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    IEnumerator WaitForFootSteps(float stepsLength) { step = false; yield return new WaitForSeconds(stepsLength); step = true; }
+
     void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (controller.isGrounded && controller.velocity.magnitude < 7 && controller.velocity.magnitude > 5 && hit.gameObject.tag == "Untagged" && step == true) {
+            AudioSource stepAudioSource = GameObject.Find("passo audio").GetComponent<AudioSource>();
+            stepAudioSource.Play();
+            StartCoroutine(WaitForFootSteps(audioStepLengthWalk));
+        }
+
         if (hit.gameObject.name.Contains("Treasure")) {
             Win();
         }
@@ -100,6 +111,7 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetButtonDown("Jump_" + playerInput)) {
                 AudioSource jumpAudioSource = GameObject.Find("pulo audio").GetComponent<AudioSource>();
                 jumpAudioSource.Play();
+
                 GameObject jumpParticle = Instantiate(JumpParticle) as GameObject;
                 jumpParticle.transform.position = this.transform.position;
                 jumpParticle.transform.SetParent(this.transform);

@@ -12,6 +12,9 @@ public class MainMenuScript : MonoBehaviour {
         mainMenuPanel = GameObject.Find("Menu Panel");
         creditsPanel = GameObject.Find("Credits Panel");
         creditsPanel.SetActive(false);
+
+        AudioSource titleTrack = GameObject.Find("track1 audio").GetComponent<AudioSource>();
+        titleTrack.Play();
     }
 
     // Update is called once per frame
