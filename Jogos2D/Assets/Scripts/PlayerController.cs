@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour {
     private GameObject hook;
     private void HandleHook() {
         if (hookReleased==false && Input.GetButtonDown("Action_" + playerInput)) {
+            AudioSource throwHookAudioSource = GameObject.Find("gancho_arremesso audio").GetComponent<AudioSource>();
+            throwHookAudioSource.Play();
+
             hook = Instantiate(HookPrefab) as GameObject;
             hook.transform.position = HookPosition.position;
             Rigidbody hookRigidbody = hook.GetComponent<Rigidbody>();
@@ -88,6 +91,8 @@ public class PlayerController : MonoBehaviour {
 
         if (hit.gameObject.name.Contains("Treasure")) {
             Win();
+        } else if(hit.gameObject.tag.Contains("Deadly")) {
+            
         }
     }
 

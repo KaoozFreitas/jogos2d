@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PauseBehaviourScript : MonoBehaviour
 {
-
+    private GameObject gameOverPanel;
     private GameObject pausePanel;
 
     bool isPaused; //Used to determine paused state
@@ -15,6 +15,11 @@ public class PauseBehaviourScript : MonoBehaviour
     {
         pausePanel = GameObject.Find("Pause Panel");
         pausePanel.SetActive(false); //make sure our pause menu is disabled when scene starts
+
+
+        gameOverPanel = GameObject.Find("Game Over Panel");
+        gameOverPanel.SetActive(false); 
+
         isPaused = false; //make sure isPaused is always false when our scene opens
     }
 
@@ -34,6 +39,13 @@ public class PauseBehaviourScript : MonoBehaviour
         pausePanel.SetActive(true); //turn on the pause menu
         Button continueButton = GameObject.Find("Continue Button").GetComponent<Button>();
         EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
+        Time.timeScale = 0f; //pause the game
+    }
+
+    void GameOver()
+    {
+        isPaused = true;
+        gameOverPanel.SetActive(true);
         Time.timeScale = 0f; //pause the game
     }
 
